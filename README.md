@@ -1,16 +1,10 @@
-# to_do_list_app
+# To do List
 
-A new Flutter project.
+This application is developed using Flutter and Dart. The Shared Preferences package is utilized to store the tasks created in the application.
 
-## Getting Started
+The app allows users to create tasks, view existing tasks, and examine task details. Additionally, it provides features to delete individual tasks and all tasks using the "Delete" button at the top.
 
-This project is a starting point for a Flutter application.
+Tasks are stored using the Shared Preferences package, and a notification popup appears each time a task is added or deleted. You can confirm or cancel the action by selecting the "Cancel" or "Okay" options in the popup.
 
-A few resources to get you started if this is your first Flutter project:
+While tasks can also be stored in SQLite, initializing the database each time the app is opened may slow down the application. Therefore, for a more advanced version of the app, considering storing tasks in Firebase could be a viable option.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
