@@ -10,18 +10,18 @@ While tasks can also be stored in SQLite, initializing the database each time th
 
 <table>
   <tr>
-    <td><img src='1.jpeg'></td>
-    <td><img src='2.jpeg'></td>
-    <td><img src='3.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/1.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/2.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/3.jpeg'></td>
   </tr>
   <tr>
-    <td><img src='4.jpeg'></td>
-    <td><img src='5.jpeg'></td>
-    <td><img src='6.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/4.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/5.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/6.jpeg'></td>
   </tr>
   <tr>
-    <td><img src='7.jpeg'></td>
-    <td><img src='8.jpeg'></td>
-    <td><img src='9.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/7.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/8.jpeg'></td>
+    <td><img src='https://github.com/mrkzqsmv/Task-Manager-App-with-FLutter-Dart-and-Sqlite-/blob/main/app_screens/9.jpeg'></td>
   </tr>
 </table>
