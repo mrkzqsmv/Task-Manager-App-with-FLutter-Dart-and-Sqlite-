@@ -8,3 +8,20 @@ Tasks are stored using the Shared Preferences package, and a notification popup 
 
 While tasks can also be stored in SQLite, initializing the database each time the app is opened may slow down the application. Therefore, for a more advanced version of the app, considering storing tasks in Firebase could be a viable option.
 
+<table>
+  <tr>
+    <td><img src='1.jpeg'></td>
+    <td><img src='2.jpeg'></td>
+    <td><img src='3.jpeg'></td>
+  </tr>
+  <tr>
+    <td><img src='4.jpeg'></td>
+    <td><img src='5.jpeg'></td>
+    <td><img src='6.jpeg'></td>
+  </tr>
+  <tr>
+    <td><img src='7.jpeg'></td>
+    <td><img src='8.jpeg'></td>
+    <td><img src='9.jpeg'></td>
+  </tr>
+</table>
