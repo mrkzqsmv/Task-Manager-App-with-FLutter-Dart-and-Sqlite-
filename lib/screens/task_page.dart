@@ -1,6 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'task_detail_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,33 +28,67 @@ class _HomePageState extends State<HomePage> {
   List<String> tasks = [];
   TextEditingController taskController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
+
+  void loadData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      tasks = prefs.getStringList('tasks') ?? [];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'To Do List',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w600,
-                fontSize: 26,
-              ),
+        backgroundColor: Colors.indigo[400],
+        appBar: AppBar(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20),
             ),
-            centerTitle: true,
-            actions: [
-              deleteAllTasksMethod(),
-            ],
           ),
-          body: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                textFormFieldMethod(context),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: tasks.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
+          title: Text(
+            'To Do List',
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w600,
+              fontSize: 26,
+            ),
+          ),
+          centerTitle: true,
+          actions: [
+            deleteAllTasksMethod(),
+          ],
+        ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              textFormFieldMethod(context),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        print('tiklandi');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TaskDetailPage(
+                              task: tasks[index],
+                              index: index,
+                              color: colors[index % colors.length],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           decoration: BoxDecoration(
@@ -63,7 +100,8 @@ class _HomePageState extends State<HomePage> {
                                 offset: const Offset(0, 3),
                               ),
                             ],
-                            color: colors[index % colors.length].withAlpha(230),
+                            color:
+                                colors[index % colors.length].withAlpha(230),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Row(
@@ -71,12 +109,15 @@ class _HomePageState extends State<HomePage> {
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 20.0),
-                                child: Text(
-                                  '${index + 1}',
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
-                                    color: Colors.white,
+                                child: Hero(
+                                  tag: index,
+                                  child: Text(
+                                    '${index + 1}',
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -97,13 +138,15 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
-              ],
-            ),
-          )),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -157,9 +200,12 @@ class _HomePageState extends State<HomePage> {
             debugPrint('canceled');
             taskController.clear();
           },
-          btnOkOnPress: () {
+          btnOkOnPress: () async {
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
             setState(() {
               tasks.clear();
+              prefs.clear();
             });
           },
         ).show();
@@ -191,10 +237,13 @@ class _HomePageState extends State<HomePage> {
             debugPrint('canceled');
             taskController.clear();
           },
-          btnOkOnPress: () {
+          btnOkOnPress: () async{
+            final SharedPreferences prefs =
+                await  SharedPreferences.getInstance();
             if (_formKey.currentState!.validate()) {
               setState(() {
                 tasks.add(taskController.text);
+                prefs.setStringList('tasks', tasks);
                 taskController.clear();
               });
             }
@@ -202,9 +251,10 @@ class _HomePageState extends State<HomePage> {
         ).show();
       },
       icon: const CircleAvatar(
-          backgroundColor: Colors.green,
-          foregroundColor: Colors.white,
-          child: Icon(Icons.done)),
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
+        child: Icon(Icons.done),
+      ),
     );
   }
 
@@ -227,9 +277,12 @@ class _HomePageState extends State<HomePage> {
             debugPrint('canceled');
             taskController.clear();
           },
-          btnOkOnPress: () {
+          btnOkOnPress: () async {
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
             setState(() {
               tasks.removeAt(index);
+              prefs.setStringList('tasks', tasks);  
             });
           },
         ).show();
